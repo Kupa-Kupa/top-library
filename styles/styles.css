@@ -1,0 +1,35 @@
+:root {
+  --side-bar-color: rgb(238, 226, 174);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.side-bar {
+  /* min-height: 100vh; */
+  padding: 1rem;
+  background-color: var(--side-bar-color);
+
+  display: grid;
+  gap: 1rem;
+  /* align-content: start; */
+  /* grid-auto-rows: min-content; */
+}
+h1 {
+}
+.add-book > form {
+  display: grid;
+  gap: 1rem;
+}
+
+footer {
+  align-self: end;
+}
