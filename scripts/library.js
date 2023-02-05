@@ -56,7 +56,7 @@ function addBookToScreen() {
   for (const prop in library[library.length - 1]) {
     let newTd = document.createElement('td');
     if (prop === 'percentage') {
-      newTd.textContent = `${library[library.length - 1][prop]}%`;
+      newTd.textContent = `${library[library.length - 1][prop].toFixed(2)}%`;
       console.log(prop);
       tableBody.appendChild(newTd);
     } else if (prop === 'info') {
