@@ -140,8 +140,51 @@ window.addEventListener('load', rebuildTable);
 // rebuildTable();
 console.table(library);
 
+// add books
+let addButton = document.querySelector('#add-book-button');
+let titleInput = document.querySelector('#title');
+let authorInput = document.querySelector('#author');
+let currentPageInput = document.querySelector('#current-page');
+let pagesInput = document.querySelector('#pages');
+let readInput = document.querySelector('#read');
+
+addButton.addEventListener('click', addBookToLibrary);
+
+// window.addEventListener('load', addBookToLibrary);
+
 // add book to library
-function addBookToLibrary() {
+function addBookToLibrary(event) {
+  // reloading the page on submit resets the library array bc JS is rerun
+  // so prevent submit with preventDefault
+  event.preventDefault();
+
+  let title = titleInput.value;
+  let author = authorInput.value;
+  let currentPage = currentPageInput.value;
+  let pages = pagesInput.value;
+  let read = readInput.value;
   const newBook = new Book(title, author, currentPage, pages, read);
   library.push(newBook);
+  console.table(library);
+  addNewBookToScreen();
 }
+
+// add book to library - if url change on submit
+// function addBookToLibrary(event) {
+//   let currentUrlSearch = window.location.search;
+//   if (currentUrlSearch.length !== 0) {
+//     let currentUrlSearch = window.location.search;
+//     let bookDetails = currentUrlSearch.split('&');
+//     let title = bookDetails[0].slice(bookDetails[0].indexOf('=') + 1);
+//     let author = bookDetails[1].slice(bookDetails[1].indexOf('=') + 1);
+//     let currentPage = bookDetails[2].slice(bookDetails[2].indexOf('=') + 1);
+//     let pages = bookDetails[3].slice(bookDetails[3].indexOf('=') + 1);
+//     let read = bookDetails[4].slice(bookDetails[4].indexOf('=') + 1);
+//     const newBook = new Book(title, author, currentPage, pages, read);
+//     library.push(newBook);
+//     console.table(library);
+//     return;
+//   } else {
+//     return;
+//   }
+// }
