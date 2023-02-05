@@ -74,7 +74,8 @@ tbody tr:nth-child(even) {
   min-height: 1ch;
 } */
 
-table th {
+table th,
+table td {
   text-align: left;
 }
 
