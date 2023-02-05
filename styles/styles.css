@@ -5,12 +5,13 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 body {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: minmax(400px, 1fr) 4fr;
 }
 
 .side-bar {
@@ -19,12 +20,14 @@ body {
   background-color: var(--side-bar-color);
 
   display: grid;
-  gap: 1rem;
+  gap: 2rem;
+  /* this will let the form fill in all the available free space outside 
+  of the content height for the heading and footer */
+  grid-template-rows: auto 1fr auto;
   /* align-content: start; */
   /* grid-auto-rows: min-content; */
 }
-h1 {
-}
+
 .add-book > form {
   display: grid;
   gap: 1rem;
@@ -32,4 +35,60 @@ h1 {
 
 footer {
   align-self: end;
+}
+
+main {
+  padding: 1rem;
+  display: grid;
+  grid-auto-rows: min-content;
+  gap: 2rem;
+}
+
+/* table styling */
+
+table {
+  min-width: 95%;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+tr,
+th,
+td {
+  padding: 5px;
+}
+
+thead {
+  background-color: rgb(255, 215, 155);
+}
+
+tbody tr:nth-child(odd) {
+  background-color: rgb(250, 245, 221);
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgb(252, 251, 245);
+}
+
+/* table > tbody > tr {
+  min-height: 1ch;
+} */
+
+table th {
+  text-align: left;
+}
+
+table th:nth-child(3),
+table td:nth-child(3) {
+  text-align: right;
+}
+
+table th:nth-child(4),
+table td:nth-child(4) {
+  text-align: right;
+}
+
+table th:nth-child(5),
+table td:nth-child(5) {
+  text-align: right;
 }

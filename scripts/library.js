@@ -27,10 +27,22 @@ Book.prototype.info = function () {
 };
 
 const theHobbit = new Book('The Hobbit', 'J.R.R Tolkien', 30, 295, 'no');
+const randomWalk = new Book(
+  'A Random Walk Down Wall Street',
+  'Burton G. Malkiel',
+  56,
+  448,
+  'no'
+);
 console.log(theHobbit.info());
 console.log(theHobbit.percentage);
 console.log(theHobbit.author);
-console.log(theHobbit);
+console.table(theHobbit);
 
 // function to add book object to library
-function addBookToLibrary() {}
+function addBookToLibrary() {
+  library.push(theHobbit, randomWalk);
+  console.table(library);
+}
+
+addBookToLibrary();
