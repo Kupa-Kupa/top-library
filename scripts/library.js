@@ -39,10 +39,40 @@ console.log(theHobbit.percentage);
 console.log(theHobbit.author);
 console.table(theHobbit);
 
-// function to add book object to library
-function addBookToLibrary() {
-  library.push(theHobbit, randomWalk);
-  console.table(library);
+// get elements need for adding to table
+
+let table = document.querySelector('table');
+let tableBody = document.querySelector('tbody');
+console.log(table);
+console.log(tableBody);
+
+library.push(theHobbit, randomWalk);
+console.table(library);
+
+// let newTd = document.createElement('td');
+
+// function to add book object to screen
+function addBookToScreen() {
+  for (const prop in library[library.length - 1]) {
+    let newTd = document.createElement('td');
+    if (prop === 'percentage') {
+      newTd.textContent = `${library[library.length - 1][prop]}%`;
+      console.log(prop);
+      tableBody.appendChild(newTd);
+    } else if (prop === 'info') {
+      continue;
+    } else {
+      newTd.textContent = library[library.length - 1][prop];
+      console.log(prop);
+      tableBody.appendChild(newTd);
+    }
+  }
+
+  let newTd = document.createElement('td');
+  let newCheckBox = document.createElement('input');
+  newCheckBox.setAttribute('type', 'checkbox');
+  newTd.appendChild(newCheckBox);
+  tableBody.appendChild(newTd);
 }
 
-addBookToLibrary();
+addBookToScreen();
