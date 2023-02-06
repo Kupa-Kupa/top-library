@@ -93,6 +93,8 @@ function addNewBookToScreen() {
   newTd.appendChild(newCheckBox);
   newTr.appendChild(newTd);
   tableBody.appendChild(newTr);
+
+  addListenersForListItems('click', changeReadProp);
 }
 
 // addBookToScreen();
