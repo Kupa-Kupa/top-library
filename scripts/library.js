@@ -1,3 +1,10 @@
+/* Features to add:
+add update page column
+enter new current page
+change the current page and percentage properties of the book
+update table
+*/
+
 // array to store book objects
 let library = [];
 
