@@ -62,6 +62,13 @@ function addNewBookToScreen() {
       newTr.appendChild(newTd);
     } else if (prop === 'info') {
       continue;
+    } else if (prop === 'read') {
+      let newButton = document.createElement('button');
+      newButton.textContent = library[library.length - 1][prop];
+      newButton.setAttribute('type', 'button');
+      newButton.setAttribute('data-read', `${library.length - 1}`);
+      newTd.appendChild(newButton);
+      newTr.appendChild(newTd);
     } else {
       newTd.textContent = library[library.length - 1][prop];
       // console.log(prop);
@@ -176,6 +183,13 @@ function rebuildTable() {
         newTr.appendChild(newTd);
       } else if (prop === 'info') {
         continue;
+      } else if (prop === 'read') {
+        let newButton = document.createElement('button');
+        newButton.textContent = library[i][prop];
+        newButton.setAttribute('type', 'button');
+        newButton.setAttribute('data-read', `${i}`);
+        newTd.appendChild(newButton);
+        newTr.appendChild(newTd);
       } else {
         newTd.textContent = library[i][prop];
         // console.log(prop);
@@ -194,6 +208,9 @@ function rebuildTable() {
     newTr.appendChild(newTd);
     tableBody.appendChild(newTr);
   }
+
+  // get list of read buttons
+  addListenersForListItems('click', changeReadProp);
 }
 
 window.addEventListener('load', rebuildTable);
@@ -248,3 +265,33 @@ function addBookToLibrary(event) {
 //     return;
 //   }
 // }
+
+// read button switch
+
+function addListenersForListItems(event, funct) {
+  let readButtonList = document.querySelectorAll('button[data-read]');
+  for (let i = 0; i < readButtonList.length; i++) {
+    readButtonList[i].addEventListener(event, funct);
+  }
+  console.log(
+    `on table rebuild: readButtonList.length = ${readButtonList.length}`
+  );
+}
+
+function changeReadProp(event) {
+  event.preventDefault();
+  console.log('clicked read button');
+  console.log(event.target);
+
+  let index = event.target.dataset.read;
+
+  if (event.target.textContent === 'No') {
+    event.target.textContent = 'Yes';
+    library[index].read = 'Yes';
+    console.table(library[index]);
+  } else if (event.target.textContent === 'Yes') {
+    event.target.textContent = 'No';
+    library[index].read = 'No';
+    console.table(library[index]);
+  }
+}
