@@ -8,6 +8,34 @@ update table
 // array to store book objects
 let library = [];
 
+/* Refactor Book constructor function into a class */
+
+class Book {
+  constructor(title, author, currentPage, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.currentPage = currentPage;
+    this.pages = pages;
+    this.percentage = (currentPage / pages) * 100;
+    this.read = read;
+  }
+
+  info() {
+    let status = '';
+    if (this.read.toLowerCase() === 'yes') {
+      status = 'read';
+    } else if (this.read.toLowerCase() === 'no') {
+      status = 'not read yet';
+    }
+    return `${this.title} by ${this.author}, ${
+      this.pages
+    } pages, ${status}. You are ${this.percentage.toFixed(
+      2
+    )}% of the way through.`;
+  }
+}
+
+/*
 // Book constructor function
 function Book(title, author, currentPage, pages, read) {
   this.title = title;
@@ -32,6 +60,7 @@ Book.prototype.info = function () {
     2
   )}% of the way through.`;
 };
+*/
 
 const theHobbit = new Book('The Hobbit', 'J.R.R Tolkien', 30, 295, 'No');
 const randomWalk = new Book(
@@ -46,8 +75,7 @@ const randomWalk = new Book(
 // console.log(theHobbit.author);
 // console.table(theHobbit);
 
-// get elements need for adding to table
-
+// get elements needed for adding to table
 let table = document.querySelector('table');
 let tableBody = document.querySelector('tbody');
 // console.log(table);
